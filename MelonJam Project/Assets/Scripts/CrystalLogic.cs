@@ -6,6 +6,7 @@ public class CrystalLogic : MonoBehaviour
     [SerializeField] bool active = false;
     GameObject player;
     Rigidbody2D playerRb;
+    [SerializeField] private float strength;
 
     private void Start()
     {
@@ -19,8 +20,9 @@ public class CrystalLogic : MonoBehaviour
         {
             if (active)
             {
+                Debug.Log("skibidy");
                 Vector3 dir = transform.position - player.transform.position;
-                playerRb.AddForce(dir.normalized, ForceMode2D.Impulse);
+                playerRb.AddForce(dir.normalized * strength, ForceMode2D.Impulse);
             }
         }
     }

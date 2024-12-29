@@ -34,7 +34,6 @@ public class RockLogic : MonoBehaviour
             {
                 grabbable = false;
                 followingMouse = false;
-
             }
             else
             {
@@ -69,5 +68,6 @@ public class RockLogic : MonoBehaviour
             sr.color = Color.white;
         }
     }
+
 
 }
