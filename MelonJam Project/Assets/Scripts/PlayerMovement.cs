@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 10f, maxSpeed = 5f, minSpeed = -5f;
     [SerializeField] private float jumpHeight = 20f;
-    public static bool grounded, hasCrystal;
+    [SerializeField] public static bool grounded, hasCrystal;
     private Rigidbody2D body;
     [SerializeField] public Sprite withCrystal;
     protected SpriteRenderer spr;
@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
+            grounded = false;
             body.linearVelocityY = 0;
             body.AddForceY(jumpHeight, ForceMode2D.Impulse);
         }
@@ -42,12 +43,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground") grounded = true;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        grounded = false;
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Rock") grounded = true;
     }
 
     public void CollectCrystal()

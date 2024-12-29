@@ -20,7 +20,7 @@ public class RockLogic : MonoBehaviour
     }
     private void OnMouseDown()
     {
-
+        Debug.Log("pick up rock!");
         if (grabbable) followingMouse = true;
 
     }
@@ -66,6 +66,7 @@ public class RockLogic : MonoBehaviour
         if (followingMouse)
         {
             followingMouse = false;
+            sr.color = Color.white;
         }
     }
 
