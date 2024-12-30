@@ -7,11 +7,13 @@ public class CrystalLogic : MonoBehaviour
     GameObject player;
     Rigidbody2D playerRb;
     [SerializeField] static private float strength = 5;
+    SoundManager audio;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerRb = player.GetComponent<Rigidbody2D>();
+        audio = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundManager>();
     }
 
    /* private void Update()
@@ -42,6 +44,7 @@ public class CrystalLogic : MonoBehaviour
     {
         if (active)
         {
+            audio.PlaySFX(audio.blueCrystalLoop);
             Vector3 dir = transform.position - player.transform.position;
             playerRb.AddForce(dir.normalized * strength, ForceMode2D.Impulse);
         }
