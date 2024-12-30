@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public Sprite withCrystal;
     protected SpriteRenderer spr;
     public GameObject[] crystals;
+    SoundManager audio;
     
 
     private void Awake()
@@ -17,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         spr = GetComponent<SpriteRenderer>();
         crystals = GameObject.FindGameObjectsWithTag("Crystal");
-        
+        audio = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundManager>();
 
     }
 
@@ -27,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && grounded)
         {
+            audio.PlaySFX(audio.playerLand);
             grounded = false;
             body.linearVelocityY = 0;
             body.AddForceY(jumpHeight, ForceMode2D.Impulse);
@@ -58,7 +60,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Rock") grounded = true;
+        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Rock")
+        {
+            grounded = true;
+            audio.PlaySFX(audio.playerFall);
+        }
     }
 
     public void CollectCrystal()

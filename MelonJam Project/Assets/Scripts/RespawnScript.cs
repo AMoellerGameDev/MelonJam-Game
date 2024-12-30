@@ -10,6 +10,7 @@ public class RespawnScript : MonoBehaviour
     public GameObject player, respawnPoint, deathPanel;
     SoundManager audio;
     [SerializeField] private CanvasGroup deathScreen;
+    private bool fadeIn = false, fadeOut = false;
 
     private void Start()
     {
@@ -32,10 +33,10 @@ public class RespawnScript : MonoBehaviour
 
         IEnumerator RespawnPlayer()
         {
-            
+            FadeIn();
             audio.PlaySFX(audio.death);
             yield return new WaitForSeconds(3);
-                deathPanel.SetActive(false);
+                FadeOut();
                 respawnPoint = GameObject.FindGameObjectWithTag("Checkpoint");
                 collision.attachedRigidbody.linearVelocity = new Vector2(0, 0);
                 player.transform.position = respawnPoint.transform.position;
@@ -44,12 +45,39 @@ public class RespawnScript : MonoBehaviour
     }
     public void FadeIn()
     {
-        deathScreen.alpha = 1;
+
+        fadeIn = true;
     }
 
     public void FadeOut()
     {
-        deathScreen.alpha = 0;
+        fadeOut = true;
     }
 
+    public void Update()
+    {
+        if (fadeIn)
+        {
+            if (deathScreen.alpha < 1)
+            {
+                deathScreen.alpha += Time.deltaTime;
+                if (deathScreen.alpha >= 1)
+                {
+                    fadeIn = false;
+                }
+            }
+        }
+
+        if (fadeOut)
+        {
+            if (deathScreen.alpha > 0)
+            {
+                deathScreen.alpha -= Time.deltaTime;
+                if (deathScreen.alpha <= 0)
+                {
+                    fadeOut = false;
+                }
+            }
+        }
+    }
 }
