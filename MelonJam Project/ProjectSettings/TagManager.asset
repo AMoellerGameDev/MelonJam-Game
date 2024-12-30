@@ -9,6 +9,8 @@ TagManager:
   - kill
   - Checkpoint
   - Crystal
+  - AudioManager
+  - Death
   layers:
   - Default
   - TransparentFX
