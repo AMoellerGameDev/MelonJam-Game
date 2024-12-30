@@ -1005,7 +1005,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 4294967295
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1015,9 +1015,7 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 45a7a4128bf376c4d996f7cc150d7008, type: 2}
-  m_TileSpriteArray:
-  - m_RefCount: 1
-    m_Data: {fileID: 5554216122756231235, guid: dba8b5b703ebf964fa6610e5a4d783a5, type: 3}
+  m_TileSpriteArray: []
   m_TileMatrixArray:
   - m_RefCount: 1
     m_Data:
@@ -3007,9 +3005,9 @@ MonoBehaviour:
 
     Jump - Space
 
-    Pull - RMB
+    Pull - LMB
 
-    Throw - LMB
+    Throw - RMB
 
     Pull
     to crystals - LShift'

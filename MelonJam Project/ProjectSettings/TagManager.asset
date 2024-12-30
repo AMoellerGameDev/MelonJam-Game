@@ -8,6 +8,7 @@ TagManager:
   - Rock
   - kill
   - Checkpoint
+  - Crystal
   layers:
   - Default
   - TransparentFX

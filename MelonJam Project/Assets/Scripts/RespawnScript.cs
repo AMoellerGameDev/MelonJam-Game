@@ -14,11 +14,13 @@ public class RespawnScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             respawnPoint = GameObject.FindGameObjectWithTag("Checkpoint");
+            collision.attachedRigidbody.linearVelocity = new Vector2(0, 0);
             player.transform.position = respawnPoint.transform.position;
         }
         else if (collision.gameObject.CompareTag("Rock"))
         {
             respawnPoint = GameObject.FindGameObjectWithTag("Checkpoint");
+            collision.attachedRigidbody.linearVelocityX = 0;
             collision.transform.position = respawnPoint.transform.position;
         }
     }

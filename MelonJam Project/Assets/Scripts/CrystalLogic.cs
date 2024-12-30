@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class CrystalLogic : MonoBehaviour
 {
-    [SerializeField] bool active = false;
+    [SerializeField] static bool active = false;
     GameObject player;
     Rigidbody2D playerRb;
+    [SerializeField] static private float strength = 5;
 
     private void Start()
     {
@@ -13,17 +14,17 @@ public class CrystalLogic : MonoBehaviour
         playerRb = player.GetComponent<Rigidbody2D>();
     }
 
-    private void Update()
+   /* private void Update()
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
             if (active)
             {
                 Vector3 dir = transform.position - player.transform.position;
-                playerRb.AddForce(dir.normalized, ForceMode2D.Impulse);
+                playerRb.AddForce(dir.normalized * strength, ForceMode2D.Impulse);
             }
         }
-    }
+    }*/
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -35,5 +36,14 @@ public class CrystalLogic : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
             active = false;
+    }
+
+    public void AttractPlayer(Transform player, Rigidbody2D playerRb)
+    {
+        if (active)
+        {
+            Vector3 dir = transform.position - player.transform.position;
+            playerRb.AddForce(dir.normalized * strength, ForceMode2D.Impulse);
+        }
     }
 }
